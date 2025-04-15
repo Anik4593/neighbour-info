@@ -125,46 +125,45 @@
     }
 
     nav .dark-toggle {
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: bold;
-  justify-content: center;
-  position: relative;
-  z-index: 100;  /* Ensure it stays on top */
-}
+      margin-top: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      justify-content: center;
+      position: relative;
+      z-index: 100;
+    }
 
-nav .dark-toggle input {
-  width: 50px;
-  height: 25px;
-  background-color: #f2f2f2;
-  border-radius: 25px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+    nav .dark-toggle input {
+      width: 50px;
+      height: 25px;
+      background-color: #f2f2f2;
+      border-radius: 25px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-nav .dark-toggle input:checked {
-  background-color: #1f2937;
-}
+    nav .dark-toggle input:checked {
+      background-color: #1f2937;
+    }
 
-nav .dark-toggle .slider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 21px;
-  height: 21px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  transition: transform 0.3s;
-}
+    nav .dark-toggle .slider {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 21px;
+      height: 21px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
 
-nav .dark-toggle input:checked .slider {
-  transform: translateX(25px);
-}
-
+    nav .dark-toggle input:checked .slider {
+      transform: translateX(25px);
+    }
 
     main {
       flex: 1;
@@ -322,62 +321,70 @@ nav .dark-toggle input:checked .slider {
 
   <main>
     <section id="garbage" class="section active">
-      <h1 class="editable">Garbage Collection Schedule</h1>
-      <p class="editable">Garbage is collected every Monday, Wednesday, and Friday between 7:00 AM and 9:00 AM.</p>
+      <h1 class="editable">🗑️ Garbage Collection Schedule</h1>
+      <p class="editable">Garbage is collected every Tuesday, Thursday, and Saturday between 6:30 AM and 8:30 AM in our colony. Please separate dry and wet waste. 🟢🔵</p>
     </section>
 
     <section id="vendors" class="section">
-      <h1 class="editable">Local Vendor Timings</h1>
+      <h1 class="editable">🛍️ Local Vendor Timings</h1>
       <ul>
-        <li class="editable">Milkman: 5:30 AM - 7:00 AM</li>
-        <li class="editable">Vegetable Vendor: 8:00 AM - 11:00 AM</li>
-        <li class="editable">Grocery Delivery: 10:00 AM - 2:00 PM</li>
+        <li class="editable">🥛 Milkman (Ramesh): 5:00 AM - 6:30 AM</li>
+        <li class="editable">🥦 Vegetable Cart (Gopal): 7:30 AM - 10:00 AM</li>
+        <li class="editable">🍞 Bakery Van: 4:00 PM - 6:00 PM (Every Wednesday & Saturday)</li>
+        <li class="editable">🛒 D-Mart Delivery: 10:00 AM - 1:00 PM</li>
       </ul>
     </section>
 
     <section id="alerts" class="section">
-      <h1 class="editable">Notices & Alerts</h1>
-      <p class="editable">Water supply maintenance on 20th April. Supply will be off from 10:00 AM to 4:00 PM.</p>
+      <h1 class="editable">📢 Notices & Alerts</h1>
+      <p class="editable">⚠️ Power cut scheduled on 18th April from 9:00 AM to 1:00 PM due to transformer maintenance by MSEB.</p>
+      <p class="editable">💧 Water tank cleaning on 21st April – no supply from 7:00 AM to 11:00 AM.</p>
     </section>
 
     <section id="events" class="section">
-      <h1 class="editable">Upcoming Events</h1>
+      <h1 class="editable">🎉 Upcoming Events</h1>
       <ul>
-        <li class="editable">Neighborhood Clean-Up Drive - 22nd April</li>
-        <li class="editable">Community Picnic - 30th April</li>
+        <li class="editable">🌿 Society Clean-Up Drive – 22nd April, 8:00 AM onwards</li>
+        <li class="editable">🍽️ Potluck Dinner – 27th April at Clubhouse, 7:30 PM</li>
+        <li class="editable">🎨 Kids' Drawing Competition – 30th April, 10:00 AM</li>
       </ul>
     </section>
 
     <section id="emergency" class="section">
-      <h1 class="editable">Emergency Contacts</h1>
+      <h1 class="editable">🚨 Emergency Contacts</h1>
       <ul>
-        <li class="editable">Fire Department: 101</li>
-        <li class="editable">Police: 102</li>
-        <li class="editable">Ambulance: 103</li>
+        <li class="editable">🔥 Fire Department (Pune): 101</li>
+        <li class="editable">🚓 Police Station (Yerwada): 100</li>
+        <li class="editable">🚑 Ambulance (Sassoon Hospital): 108</li>
+        <li class="editable">👨‍⚕️ Society Doctor (Dr. Patel): +91-9876543210</li>
+        <li class="editable">🔧 Electrician (Sameer): +91-9123456780</li>
       </ul>
     </section>
 
     <section id="lostfound" class="section">
-      <h1 class="editable">Lost & Found</h1>
+      <h1 class="editable">🔍 Lost & Found</h1>
       <ul>
-        <li class="editable">Lost: Brown Wallet - Contact Sarah at 9876543210</li>
-        <li class="editable">Found: Pair of Glasses - Contact John at 9123456789</li>
+        <li class="editable">👜 Lost: Blue purse near Gate 2 – contact Priya at +91-9812345678</li>
+        <li class="editable">🔑 Found: House keys with keychain “Om” – deposited at security</li>
+        <li class="editable">🎒 Lost: Black school bag – last seen on playground</li>
       </ul>
     </section>
 
     <section id="babysitting" class="section">
-      <h1 class="editable">Babysitting Services</h1>
+      <h1 class="editable">👶 Babysitting Services</h1>
       <ul>
-        <li class="editable">Emma - Available Monday to Friday, 9:00 AM - 5:00 PM, $15/hour</li>
-        <li class="editable">Liam - Available weekends, 10:00 AM - 6:00 PM, $12/hour</li>
+        <li class="editable">👩‍🍼 Rekha Aunty – Mon to Sat, 9:00 AM to 6:00 PM – ₹150/hr</li>
+        <li class="editable">👦 Ravi – Weekends only, 10:00 AM to 4:00 PM – ₹120/hr</li>
+        <li class="editable">👩‍🏫 Neha – After-school care (4:00 PM - 7:00 PM) – ₹100/hr</li>
       </ul>
     </section>
 
     <section id="petkeeping" class="section">
-      <h1 class="editable">Pet Sitting Services</h1>
+      <h1 class="editable">🐶 Pet Sitting Services</h1>
       <ul>
-        <li class="editable">Alice - Available for Dogs & Cats, $20/day</li>
-        <li class="editable">Bob - Available for all pets, $18/day</li>
+        <li class="editable">🐕 Arjun – Experienced with dogs & cats – ₹500/day</li>
+        <li class="editable">🐾 Meena – Pet boarding for small pets – ₹350/day</li>
+        <li class="editable">🐦 Jay – Bird care services – ₹200/day</li>
       </ul>
     </section>
   </main>
@@ -388,6 +395,7 @@ nav .dark-toggle input:checked .slider {
 
   <script>
     let isDarkMode = false;
+    let isAdmin = false;
 
     document.getElementById('toggleDarkMode').addEventListener('change', function() {
       isDarkMode = this.checked;
@@ -414,8 +422,19 @@ nav .dark-toggle input:checked .slider {
 
       if (username === 'admin' && password === 'password') {
         document.getElementById('loginScreen').style.display = 'none';
+        isAdmin = true;
+        enableEditing();
       } else {
         document.getElementById('errorMsg').style.display = 'block';
+      }
+    }
+
+    function enableEditing() {
+      if (isAdmin) {
+        const editableElements = document.querySelectorAll('.editable');
+        editableElements.forEach(elem => {
+          elem.setAttribute('contenteditable', 'true');
+        });
       }
     }
   </script>
