@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neighborhood Info Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #a5b4fc, #4f46e5);
+      color: #333;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background: linear-gradient(135deg, #1f2937, #111827);
+      color: #f9fafb;
+    }
+
+    #loginScreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(5px);
+      z-index: 100;
+    }
+
+    #loginBox {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 320px;
+      text-align: center;
+      animation: fadeIn 0.4s ease-in-out;
+      position: relative;
+    }
+
+    #loginBox input {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      background: #f3f4f6;
+    }
+
+    #loginBox button {
+      padding: 12px;
+      background: #4b5563;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #loginBox button:hover {
+      background: #1f2937;
+    }
+
+    #loginBox .back-btn {
+      background: #9ca3af;
+    }
+
+    nav {
+      width: 250px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #fff;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 4px 0 12px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    nav h2 {
+      font-size: 26px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f9fafb;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    nav ul li {
+      padding: 14px;
+      background: #2d3e5c;
+      border-radius: 12px;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    nav ul li:hover {
+      background: #3b4b71;
+      transform: scale(1.02);
+    }
+
+    nav .dark-toggle {
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  justify-content: center;
+  position: relative;
+  z-index: 100;  /* Ensure it stays on top */
+}
+
+nav .dark-toggle input {
+  width: 50px;
+  height: 25px;
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+nav .dark-toggle input:checked {
+  background-color: #1f2937;
+}
+
+nav .dark-toggle .slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 21px;
+  height: 21px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+nav .dark-toggle input:checked .slider {
+  transform: translateX(25px);
+}
+
+
+    main {
+      flex: 1;
+      padding: 40px;
+      background: #f3f4f6;
+      overflow-y: auto;
+      transition: background-color 0.3s;
+    }
+
+    body.dark main {
+      background: #1f2937;
+    }
+
+    .section {
+      display: none;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.4s ease-in-out;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    body.dark .section {
+      background: #374151;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      color: #1f2937;
+      transition: color 0.3s;
+    }
+
+    h1.dark {
+      color: #f9fafb;
+    }
+
+    body.dark h1, body.dark p, body.dark li {
+      color: #f9fafb;
+    }
+
+    p, li {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #374151;
+      transition: color 0.3s;
+    }
+
+    .section li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #2d3e5c;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
+
+    body.dark footer {
+      background: #4b5563;
+    }
+
+    .editable[contenteditable="true"] {
+      border: 1px dashed transparent;
+      padding: 4px;
+      transition: background 0.2s;
+    }
+
+    .editable[contenteditable="true"]:focus {
+      outline: none;
+      border-color: #60a5fa;
+      background: #e0f2fe;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .section:hover .delete-btn {
+      display: flex;
+    }
+
+    .editable {
+      color: #2D3748;
+    }
+
+    body.dark .editable {
+      color: #f9fafb;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginScreen">
+    <div id="loginBox">
+      <h2>Admin Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <button class="back-btn" onclick="document.getElementById('loginScreen').style.display = 'none';">Back</button>
+      <p id="errorMsg" style="color: red; display: none;">Invalid credentials</p>
+    </div>
+  </div>
+
+  <nav>
+    <h2>Info Hub</h2>
+    <ul>
+      <li onclick="showSection('garbage')">Garbage Schedule</li>
+      <li onclick="showSection('vendors')">Local Vendors</li>
+      <li onclick="showSection('alerts')">Notices & Alerts</li>
+      <li onclick="showSection('events')">Events</li>
+      <li onclick="showSection('emergency')">Emergency Contacts</li>
+      <li onclick="showSection('lostfound')">Lost & Found</li>
+      <li onclick="showSection('babysitting')">Babysitting Services</li>
+      <li onclick="showSection('petkeeping')">Pet Sitting Services</li>
+      <li onclick="document.getElementById('loginScreen').style.display = 'flex';">Login as Admin</li>
+    </ul>
+    <div class="dark-toggle">
+      <label>Dark Mode</label>
+      <input type="checkbox" id="toggleDarkMode">
+      <div class="slider"></div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="garbage" class="section active">
+      <h1 class="editable">Garbage Collection Schedule</h1>
+      <p class="editable">Garbage is collected every Monday, Wednesday, and Friday between 7:00 AM and 9:00 AM.</p>
+    </section>
+
+    <section id="vendors" class="section">
+      <h1 class="editable">Local Vendor Timings</h1>
+      <ul>
+        <li class="editable">Milkman: 5:30 AM - 7:00 AM</li>
+        <li class="editable">Vegetable Vendor: 8:00 AM - 11:00 AM</li>
+        <li class="editable">Grocery Delivery: 10:00 AM - 2:00 PM</li>
+      </ul>
+    </section>
+
+    <section id="alerts" class="section">
+      <h1 class="editable">Notices & Alerts</h1>
+      <p class="editable">Water supply maintenance on 20th April. Supply will be off from 10:00 AM to 4:00 PM.</p>
+    </section>
+
+    <section id="events" class="section">
+      <h1 class="editable">Upcoming Events</h1>
+      <ul>
+        <li class="editable">Neighborhood Clean-Up Drive - 22nd April</li>
+        <li class="editable">Community Picnic - 30th April</li>
+      </ul>
+    </section>
+
+    <section id="emergency" class="section">
+      <h1 class="editable">Emergency Contacts</h1>
+      <ul>
+        <li class="editable">Fire Department: 101</li>
+        <li class="editable">Police: 102</li>
+        <li class="editable">Ambulance: 103</li>
+      </ul>
+    </section>
+
+    <section id="lostfound" class="section">
+      <h1 class="editable">Lost & Found</h1>
+      <ul>
+        <li class="editable">Lost: Brown Wallet - Contact Sarah at 9876543210</li>
+        <li class="editable">Found: Pair of Glasses - Contact John at 9123456789</li>
+      </ul>
+    </section>
+
+    <section id="babysitting" class="section">
+      <h1 class="editable">Babysitting Services</h1>
+      <ul>
+        <li class="editable">Emma - Available Monday to Friday, 9:00 AM - 5:00 PM, $15/hour</li>
+        <li class="editable">Liam - Available weekends, 10:00 AM - 6:00 PM, $12/hour</li>
+      </ul>
+    </section>
+
+    <section id="petkeeping" class="section">
+      <h1 class="editable">Pet Sitting Services</h1>
+      <ul>
+        <li class="editable">Alice - Available for Dogs & Cats, $20/day</li>
+        <li class="editable">Bob - Available for all pets, $18/day</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Neighborhood Info Hub | All rights reserved</p>
+  </footer>
+
+  <script>
+    let isDarkMode = false;
+
+    document.getElementById('toggleDarkMode').addEventListener('change', function() {
+      isDarkMode = this.checked;
+      if (isDarkMode) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+    });
+
+    function showSection(id) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+
+      const activeSection = document.getElementById(id);
+      activeSection.classList.add('active');
+    }
+
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username === 'admin' && password === 'password') {
+        document.getElementById('loginScreen').style.display = 'none';
+      } else {
+        document.getElementById('errorMsg').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
